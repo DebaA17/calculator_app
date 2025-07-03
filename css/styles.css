@@ -890,20 +890,23 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .container {
+    body {
+        font-size: 14px;
+        padding: 0 10px;
+    }
+
+    .calculator {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
         padding: 10px;
     }
-    
-    .calculator {
-        padding: 20px;
-        max-width: 350px;
-    }
-    
+
     .display {
-        font-size: 2.5rem;
-        padding: 20px 15px;
+        font-size: 1.5rem;
+        padding: 10px;
     }
-    
+
     .key {
         height: 70px;
         font-size: 1.5rem;
