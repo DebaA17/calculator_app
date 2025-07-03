@@ -1,0 +1,52 @@
+{
+  "name": "modern-calculator-app",
+  "version": "1.0.0",
+  "description": "A beautiful, interactive calculator with modern animations and multiple themes",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "serve": "npx serve .",
+    "dev": "npx live-server --port=8000",
+    "build": "echo 'Static site - no build process needed'",
+    "deploy": "echo 'Ready for deployment'"
+  },
+  "keywords": [
+    "calculator",
+    "web-app",
+    "javascript",
+    "css3",
+    "html5",
+    "animations",
+    "themes",
+    "modern-ui",
+    "responsive",
+    "interactive"
+  ],
+  "author": {
+    "name": "Debasis",
+    "email": "hello@debasisbiswas.me",
+    "url": "https://github.com/DebaA17"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DebaA17/calculator-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DebaA17/calculator-app/issues"
+  },
+  "homepage": "https://DebaA17.github.io/calculator-app",
+  "dependencies": {},
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "serve": "^14.2.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

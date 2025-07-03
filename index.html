@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Calculator - by Debasis</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Hacker System Info Panel (Hidden by default) -->
+    <div id="hacker-panel" class="hacker-panel hidden">
+        <div class="hacker-header">
+            <div class="hacker-title">
+                <i class="fas fa-skull-crossbones"></i>
+                <span class="glitch-text">SYSTEM ACCESSED</span>
+                <i class="fas fa-skull-crossbones"></i>
+            </div>
+            <div class="hacker-subtitle">
+                <span class="typing-text">Gathering target information...</span>
+            </div>
+        </div>
+        
+        <div class="hacker-content">
+            <div class="scan-lines"></div>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="label">IP ADDRESS:</span>
+                    <span id="user-ip" class="value loading">Detecting...</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">LOCATION:</span>
+                    <span id="user-location" class="value loading">Triangulating...</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">ISP:</span>
+                    <span id="user-isp" class="value loading">Identifying...</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">DEVICE:</span>
+                    <span id="user-device" class="value loading">Scanning...</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">BROWSER:</span>
+                    <span id="user-browser" class="value loading">Analyzing...</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">OS:</span>
+                    <span id="user-os" class="value loading">Detecting...</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">VPN STATUS:</span>
+                    <span id="vpn-status" class="value loading">Checking...</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">SECURITY LEVEL:</span>
+                    <span id="security-level" class="value loading">Evaluating...</span>
+                </div>
+            </div>
+            
+            <div class="hacker-commands">
+                <div class="command-line">
+                    <span class="prompt">root@hacker:~$</span>
+                    <span class="command typing-command">nmap -sS -A target_ip</span>
+                </div>
+                <div class="command-line">
+                    <span class="prompt">root@hacker:~$</span>
+                    <span class="command typing-command">exploit -m stealth_mode</span>
+                </div>
+                <div class="command-line">
+                    <span class="prompt">root@hacker:~$</span>
+                    <span class="command typing-command">data_harvest --all</span>
+                </div>
+            </div>
+            
+            <div class="warning-message">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>YOUR SYSTEM HAS BEEN COMPROMISED</span>
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+        </div>
+        
+        <div class="hacker-footer">
+            <button id="close-hacker-panel" class="close-btn">
+                <i class="fas fa-times"></i>
+                TERMINATE CONNECTION
+            </button>
+        </div>
+    </div>
+    
+    <!-- Hacker Mode Trigger (Secret) -->
+    <div id="hacker-trigger" class="hacker-trigger">
+        <i class="fas fa-user-secret"></i>
+    </div>
+    
+    <!-- System Info Display (Top Bar) -->
+    <div class="system-info-bar">
+        <div class="info-item">
+            <i class="fas fa-globe"></i>
+            <span id="nav-ip">Loading...</span>
+        </div>
+        <div class="info-item">
+            <i class="fas fa-laptop"></i>
+            <span id="nav-device">Loading...</span>
+        </div>
+        <div class="info-item">
+            <i class="fas fa-shield-alt"></i>
+            <span id="nav-security">Secure</span>
+        </div>
+    </div>
+    
+    <div class="background-overlay"></div>
+    
+    <!-- Theme Toggle Button -->
+    <div class="theme-toggle-container">
+        <button id="theme-toggle" class="theme-toggle-btn">
+            <i class="fas fa-palette"></i>
+        </button>
+    </div>
+    
+    <div class="container">
+        <div id="calculator" class="calculator">
+            <div class="calculator-header">
+                <div class="calculator-title">
+                    <i class="fas fa-calculator"></i>
+                    <span>Calculator</span>
+                </div>
+            </div>
+            
+            <div class="display-container">
+                <input id="display" class="display" readonly>
+                <div class="display-shadow"></div>
+            </div>
+            
+            <div id="keys" class="keys">
+                <button onclick="clearDisplay()" class="key clear-btn" data-key="clear">
+                    <span>C</span>
+                    <div class="key-ripple"></div>
+                </button>
+                <button onclick="deleteLast()" class="key operator-btn" data-key="delete">
+                    <i class="fas fa-backspace"></i>
+                    <div class="key-ripple"></div>
+                </button>
+                <button onclick="appendToDisplay('/')" class="key operator-btn" data-key="divide">
+                    <span>÷</span>
+                    <div class="key-ripple"></div>
+                </button>
+                <button onclick="appendToDisplay('*')" class="key operator-btn" data-key="multiply">
+                    <span>×</span>
+                    <div class="key-ripple"></div>
+                </button>
+                
+                <button onclick="appendToDisplay('7')" class="key number-btn" data-key="7">
+                    <span>7</span>
+                    <div class="key-ripple"></div>
+                </button>
+                <button onclick="appendToDisplay('8')" class="key number-btn" data-key="8">
+                    <span>8</span>
+                    <div class="key-ripple"></div>
+                </button>
+                <button onclick="appendToDisplay('9')" class="key number-btn" data-key="9">
+                    <span>9</span>
+                    <div class="key-ripple"></div>
+                </button>
+                <button onclick="appendToDisplay('-')" class="key operator-btn" data-key="subtract">
+                    <span>−</span>
+                    <div class="key-ripple"></div>
+                </button>
+                
+                <button onclick="appendToDisplay('4')" class="key number-btn" data-key="4">
+                    <span>4</span>
+                    <div class="key-ripple"></div>
+                </button>
+                <button onclick="appendToDisplay('5')" class="key number-btn" data-key="5">
+                    <span>5</span>
+                    <div class="key-ripple"></div>
+                </button>
+                <button onclick="appendToDisplay('6')" class="key number-btn" data-key="6">
+                    <span>6</span>
+                    <div class="key-ripple"></div>
+                </button>
+                <button onclick="appendToDisplay('+')" class="key operator-btn" data-key="add">
+                    <span>+</span>
+                    <div class="key-ripple"></div>
+                </button>
+                
+                <button onclick="appendToDisplay('1')" class="key number-btn" data-key="1">
+                    <span>1</span>
+                    <div class="key-ripple"></div>
+                </button>
+                <button onclick="appendToDisplay('2')" class="key number-btn" data-key="2">
+                    <span>2</span>
+                    <div class="key-ripple"></div>
+                </button>
+                <button onclick="appendToDisplay('3')" class="key number-btn" data-key="3">
+                    <span>3</span>
+                    <div class="key-ripple"></div>
+                </button>
+                <button onclick="calculate()" class="key equals-btn" data-key="equals" rowspan="2">
+                    <span>=</span>
+                    <div class="key-ripple"></div>
+                </button>
+                
+                <button onclick="appendToDisplay('0')" class="key number-btn zero-btn" data-key="0">
+                    <span>0</span>
+                    <div class="key-ripple"></div>
+                </button>
+                <button onclick="appendToDisplay('.')" class="key number-btn" data-key="decimal">
+                    <span>.</span>
+                    <div class="key-ripple"></div>
+                </button>
+            </div>
+            
+            <div class="calculator-glow"></div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-text">
+                <i class="fas fa-code"></i>
+                <span>Calculator Demo by <strong>Debasis</strong></span>
+            </div>
+            <div class="footer-links">
+                <a href="#" class="footer-link">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="#" class="footer-link">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.1.0/math.min.js"></script>
+    <script src="js/calculator.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/hacker.js"></script>
+</body>
+</html>
