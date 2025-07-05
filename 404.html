@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <meta http-equiv="refresh" content="10;url=https://debasisbiswas.me">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .animated-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(78, 205, 196, 0.3) 0%, transparent 50%),
+                linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            animation: backgroundPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes backgroundPulse {
+            0%, 100% { 
+                opacity: 1;
+                transform: scale(1);
+            }
+            25% { 
+                opacity: 0.9;
+                transform: scale(1.02);
+            }
+            50% { 
+                opacity: 0.85;
+                transform: scale(1.05);
+            }
+            75% { 
+                opacity: 0.9;
+                transform: scale(1.02);
+            }
+        }
+
+        .matrix-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+            max-width: 600px;
+            padding: 50px;
+            backdrop-filter: blur(15px);
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            animation: containerFloat 4s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.15), transparent);
+            animation: shimmer 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                rgba(255,107,107,0.1), 
+                rgba(255,165,0,0.1), 
+                rgba(78,205,196,0.1), 
+                rgba(255,107,107,0.1));
+            background-size: 300% 300%;
+            border-radius: 25px;
+            animation: gradientShift 6s ease-in-out infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes shimmer {
+            0% { 
+                transform: translateX(-100%) translateY(-100%);
+                opacity: 0.3;
+            }
+            50% { 
+                transform: translateX(0%) translateY(0%);
+                opacity: 0.8;
+            }
+            100% { 
+                transform: translateX(100%) translateY(100%);
+                opacity: 0.3;
+            }
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            25% { background-position: 100% 50%; }
+            50% { background-position: 50% 100%; }
+            75% { background-position: 50% 0%; }
+        }
+
+        @keyframes containerFloat {
+            0%, 100% { 
+                transform: translateY(0px) scale(1);
+                box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            }
+            50% { 
+                transform: translateY(-10px) scale(1.02);
+                box-shadow: 0 35px 70px rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        .error-code {
+            font-size: 10rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500, #ff6b6b, #4ecdc4);
+            background-size: 300% 100%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: 
+                codeGlow 2s ease-in-out infinite,
+                gradientFlow 4s ease-in-out infinite,
+                shake 0.5s ease-in-out infinite;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes codeGlow {
+            0%, 100% { 
+                filter: drop-shadow(0 0 20px rgba(255, 107, 107, 0.5));
+                transform: scale(1);
+            }
+            50% { 
+                filter: drop-shadow(0 0 40px rgba(255, 165, 0, 0.8));
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes gradientFlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
+            20%, 40%, 60%, 80% { transform: translateX(2px); }
+        }
+
+        .error-message {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: 
+                fadeInUp 1s ease-out 0.5s forwards,
+                textPulse 3s ease-in-out infinite;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes textPulse {
+            0%, 100% { 
+                text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% { 
+                text-shadow: 0 0 25px rgba(255, 255, 255, 0.7);
+                opacity: 0.95;
+                transform: scale(1.02);
+            }
+        }
+
+        .redirect-message {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: 
+                fadeInUp 1s ease-out 1s forwards,
+                textGlow 4s ease-in-out infinite;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes textGlow {
+            0%, 100% { 
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+                opacity: 0.9;
+            }
+            50% { 
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+                opacity: 1;
+            }
+        }
+
+        .countdown-container {
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1.5s forwards;
+            position: relative;
+            z-index: 2;
+        }
+
+        .countdown {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #ffa500;
+            display: inline-block;
+            padding: 25px;
+            border: 4px solid #ffa500;
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            line-height: 70px;
+            animation: 
+                countdownRotate 1s ease-in-out infinite,
+                countdownGlow 2s ease-in-out infinite;
+            position: relative;
+            background: rgba(255, 165, 0, 0.1);
+        }
+
+        .countdown::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px solid transparent;
+            border-top: 2px solid #ffa500;
+            border-radius: 50%;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes countdownRotate {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        @keyframes countdownGlow {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(255, 165, 0, 0.6);
+                border-color: #ffa500;
+            }
+            50% { 
+                box-shadow: 0 0 40px rgba(255, 165, 0, 1);
+                border-color: #ff8c00;
+            }
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 30px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b6b, #ffa500, #4ecdc4);
+            background-size: 200% 100%;
+            border-radius: 3px;
+            animation: 
+                progressFill 10s linear forwards,
+                progressGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes progressFill {
+            from { width: 100%; }
+            to { width: 0%; }
+        }
+
+        @keyframes progressGlow {
+            0%, 100% { 
+                background-position: 0% 50%;
+                box-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+            }
+            50% { 
+                background-position: 100% 50%;
+                box-shadow: 0 0 20px rgba(78, 205, 196, 0.8);
+            }
+        }
+
+        .home-button {
+            display: inline-block;
+            padding: 18px 40px;
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 2s forwards;
+            position: relative;
+            overflow: hidden;
+            z-index: 2;
+            border: 2px solid transparent;
+        }
+
+        .home-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .home-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+        }
+
+        .home-button:hover::before {
+            left: 100%;
+        }
+
+        .home-button:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        .home-button:hover {
+            transform: translateY(-5px) scale(1.08);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(45deg, #44a08d, #4ecdc4);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .floating-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.05) 70%, transparent 100%);
+            border-radius: 50%;
+            animation: particleFloat 10s ease-in-out infinite;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes particleFloat {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.4;
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            }
+            25% { 
+                transform: translateY(-40px) rotate(90deg);
+                opacity: 0.8;
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            }
+            50% { 
+                transform: translateY(-30px) rotate(180deg);
+                opacity: 0.6;
+                box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            }
+            75% { 
+                transform: translateY(-50px) rotate(270deg);
+                opacity: 1;
+                box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .error-code { font-size: 7rem; }
+            .error-message { font-size: 1.4rem; }
+            .redirect-message { font-size: 1.1rem; }
+            .countdown { 
+                font-size: 2.5rem; 
+                width: 90px; 
+                height: 90px; 
+                line-height: 40px; 
+                padding: 20px;
+            }
+            .container { padding: 30px 20px; }
+            .home-button { padding: 15px 30px; font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+    <canvas class="matrix-bg" id="matrix"></canvas>
+    
+    <div class="floating-particles" id="particles"></div>
+
+    <div class="container">
+        <div class="error-code">404</div>
+        <div class="error-message">Page Not Found</div>
+        <div class="redirect-message">Redirecting to main domain in:</div>
+        <div class="countdown-container">
+            <div class="countdown" id="countdown">10</div>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+        <a href="https://debasisbiswas.me" class="home-button">Go to Main Site Now</a>
+    </div>
+
+    <script>
+        let countdown = 10;
+        const countdownElement = document.getElementById('countdown');
+        
+        const timer = setInterval(() => {
+            countdown--;
+            countdownElement.textContent = countdown;
+            
+            if (countdown <= 0) {
+                clearInterval(timer);
+                window.location.href = 'https://debasisbiswas.me';
+            }
+        }, 1000);
+
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                const size = Math.random() * 30 + 15;
+                const hue = Math.random() * 60 + 180; // Blue to purple range
+                particle.style.cssText = `
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${Math.random() * 100}%;
+                    top: ${Math.random() * 100}%;
+                    background: radial-gradient(circle, hsla(${hue}, 70%, 80%, 0.3) 0%, hsla(${hue}, 70%, 80%, 0.1) 70%, transparent 100%);
+                    animation-delay: ${Math.random() * 10}s;
+                    animation-duration: ${8 + Math.random() * 6}s;
+                    box-shadow: 0 0 ${size/2}px hsla(${hue}, 70%, 80%, 0.2);
+                `;
+                container.appendChild(particle);
+            }
+        }
+
+        function initMatrix() {
+            const canvas = document.getElementById('matrix');
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            const chars = '01ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+            const columns = Math.floor(canvas.width / 25);
+            const drops = Array(columns).fill(0);
+            
+            function drawMatrix() {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.03)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.08)';
+                ctx.font = '12px monospace';
+                
+                for (let i = 0; i < drops.length; i++) {
+                    const text = chars[Math.floor(Math.random() * chars.length)];
+                    const x = i * 25;
+                    const y = drops[i] * 25;
+                    
+                    // Create gradient effect for each character
+                    if (y > 0) {
+                        const gradient = ctx.createLinearGradient(x, y - 50, x, y);
+                        gradient.addColorStop(0, 'rgba(255, 255, 255, 0)');
+                        gradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.1)');
+                        gradient.addColorStop(1, 'rgba(255, 255, 255, 0.15)');
+                        ctx.fillStyle = gradient;
+                    }
+                    
+                    ctx.fillText(text, x, y);
+                    
+                    if (drops[i] * 25 > canvas.height && Math.random() > 0.98) {
+                        drops[i] = 0;
+                    }
+                    drops[i]++;
+                }
+            }
+            
+            setInterval(drawMatrix, 120);
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            const trail = document.createElement('div');
+            trail.style.cssText = `
+                position: absolute;
+                left: ${e.clientX}px;
+                top: ${e.clientY}px;
+                width: 8px;
+                height: 8px;
+                background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 1000;
+                animation: trailFade 1s ease-out forwards;
+            `;
+            
+            document.body.appendChild(trail);
+            
+            setTimeout(() => trail.remove(), 1000);
+        });
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes trailFade {
+                0% { opacity: 1; transform: scale(1); }
+                100% { opacity: 0; transform: scale(0); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        window.addEventListener('load', () => {
+            createParticles();
+            initMatrix();
+        });
+
+        window.addEventListener('resize', () => {
+            const canvas = document.getElementById('matrix');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+        // Enhanced mouse trail effects
+        document.addEventListener('mousemove', (e) => {
+            // Create multiple trail elements for richer effect
+            for (let i = 0; i < 3; i++) {
+                const trail = document.createElement('div');
+                const size = Math.random() * 12 + 6;
+                const delay = i * 50;
+                
+                trail.style.cssText = `
+                    position: absolute;
+                    left: ${e.clientX - size/2}px;
+                    top: ${e.clientY - size/2}px;
+                    width: ${size}px;
+                    height: ${size}px;
+                    background: radial-gradient(circle, rgba(255,255,255,${0.8 - i*0.2}) 0%, transparent 70%);
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 1000;
+                    animation: trailFade ${1 + i*0.3}s ease-out forwards;
+                    animation-delay: ${delay}ms;
+                `;
+                
+                document.body.appendChild(trail);
+                
+                setTimeout(() => trail.remove(), 2000);
+            }
+        });
+
+        // Enhanced keyboard interactions
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                window.location.href = 'https://debasisbiswas.me';
+            }
+            
+            // Easter egg: Press 'R' to reset countdown
+            if (e.key.toLowerCase() === 'r') {
+                countdown = 10;
+                countdownElement.textContent = countdown;
+                // Add visual feedback
+                countdownElement.style.transform = 'scale(1.2)';
+                countdownElement.style.color = '#ff6b6b';
+                setTimeout(() => {
+                    countdownElement.style.transform = 'scale(1)';
+                    countdownElement.style.color = '#ffa500';
+                }, 300);
+            }
+        });
+
+        // Add click-to-redirect functionality
+        document.addEventListener('click', (e) => {
+            if (e.target.tagName !== 'A') {
+                // Create ripple effect on click
+                const ripple = document.createElement('div');
+                ripple.style.cssText = `
+                    position: absolute;
+                    left: ${e.clientX}px;
+                    top: ${e.clientY}px;
+                    width: 0;
+                    height: 0;
+                    background: rgba(255, 255, 255, 0.3);
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 1000;
+                    animation: rippleEffect 0.8s ease-out forwards;
+                `;
+                
+                document.body.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 800);
+            }
+        });
+
+        // Enhanced style animations
+        const additionalStyles = document.createElement('style');
+        additionalStyles.textContent = `
+            @keyframes trailFade {
+                0% { opacity: 1; transform: scale(1); }
+                100% { opacity: 0; transform: scale(0); }
+            }
+            
+            @keyframes rippleEffect {
+                0% { 
+                    width: 0; 
+                    height: 0; 
+                    opacity: 0.6; 
+                    transform: translate(-50%, -50%);
+                }
+                100% { 
+                    width: 300px; 
+                    height: 300px; 
+                    opacity: 0; 
+                    transform: translate(-50%, -50%);
+                }
+            }
+            
+            /* Enhanced button hover effects */
+            .home-button:active {
+                transform: translateY(-3px) scale(1.05);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            }
+            
+            /* Enhanced container interactions */
+            .container:hover {
+                transform: translateY(-5px) scale(1.02);
+                box-shadow: 0 35px 70px rgba(0, 0, 0, 0.25);
+            }
+            
+            /* Particle hover effects */
+            .particle:hover {
+                animation-play-state: paused;
+                transform: scale(1.5);
+                opacity: 1 !important;
+            }
+            
+            /* Enhanced error code interactions */
+            .error-code:hover {
+                animation-play-state: paused;
+                transform: scale(1.1);
+                filter: drop-shadow(0 0 50px rgba(255, 107, 107, 0.9));
+            }
+            
+            /* Countdown hover effects */
+            .countdown:hover {
+                animation-play-state: paused;
+                transform: scale(1.2);
+                background: rgba(255, 165, 0, 0.3);
+                box-shadow: 0 0 60px rgba(255, 165, 0, 1);
+            }
+            
+            /* Progress bar hover effects */
+            .progress-bar:hover .progress-fill {
+                animation-play-state: paused;
+                box-shadow: 0 0 30px rgba(78, 205, 196, 1);
+            }
+            
+            /* Enhanced responsive interactions */
+            @media (max-width: 768px) {
+                .container:hover {
+                    transform: translateY(-2px) scale(1.01);
+                }
+                
+                .error-code:hover {
+                    transform: scale(1.05);
+                }
+                
+                .countdown:hover {
+                    transform: scale(1.1);
+                }
+            }
+        `;
+        document.head.appendChild(additionalStyles);
+
+        // Initialize all effects
+        window.addEventListener('load', () => {
+            createParticles();
+            initMatrix();
+            
+            // Add entrance animation to all elements
+            const elements = document.querySelectorAll('.error-code, .error-message, .redirect-message, .countdown-container, .progress-bar, .home-button');
+            elements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.2}s`;
+            });
+        });
+
+        window.addEventListener('resize', () => {
+            const canvas = document.getElementById('matrix');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
